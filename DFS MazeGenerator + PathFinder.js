@@ -1,4 +1,3 @@
-//var font;
 var cols, rows;
 var w=20;
 var grid = [];
@@ -12,10 +11,13 @@ var notSet=true;
 var mazeslider;
 var solveslider;
 var z=0;
+
+
 function setup(){
   frameRate(100);
   createCanvas(700,700);
   background(51);
+
   cols = floor(width/w);
   rows = floor(height/w);
 
@@ -29,7 +31,7 @@ function setup(){
   text.position(width +10, 20);
   text.style("font-family", "monospace");
   text.style("background-color", "#FF0000");
-   text.style("color", "#FFFFFF");
+  text.style("color", "#FFFFFF");
   text.style("font-size", "12pt");
   text.style("padding", "3px");
 
@@ -40,9 +42,7 @@ function setup(){
   text1 = createP("Maze");
   text1.position(width +10, 60);
   text1.style("font-family", "monospace");
-  // text.style("background-color", "#FF0000");
- 
-  // text.style("padding", "3px");
+
 
 
   solveslider=createSlider(1,22,2,1);
@@ -69,7 +69,7 @@ function setup(){
   text2.position(width +10, 220);
   text2.style("font-family", "sans-serif");  
 
-
+//not working
   // input = createInput();
   // input.position(width+20, 665);
 
@@ -85,20 +85,22 @@ function draw(){
   for(var i = 0; i < grid.length; i++){
     grid[i].show();
   }
-  if(notSet){var x=0;
+
+  if(notSet){
+    var x=0;
   while(x<mazeslider.value()){
-  current.visited = true;
-  current.highlight();
-  var next =current.checkNeighbours();
-  if(next){
-    
-    next.visited = true;
-    stack.push(current);
-    removeWalls(current,next)
-    current = next;
-  }
-  else if(stack.length>0){
-    current= stack.pop();}
+    current.visited = true;
+    current.highlight();
+    var next =current.checkNeighbours();
+    if(next){
+      
+      next.visited = true;
+      stack.push(current);
+      removeWalls(current,next)
+      current = next;
+    }
+    else if(stack.length>0){
+      current= stack.pop();}
 
   x++;}
 }
